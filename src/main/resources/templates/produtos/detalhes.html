@@ -36,7 +36,7 @@
             <form >
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="nome">Nome</label>
+                        <label for="nome" th:if="${interacao.id == null}">Nome</label>
                         <input type="nome" class="form-control" 
                          id="nome" placeholder="NOME COMPLETO" required>
                         <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="email">Email</label>
+                        <label for="email" th:if="${interacao.id == null">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="E-mail" required>
                         <div class="invalid-feedback">
                             Preencha corretamente o campo.
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="comentario">Comentário</label>
+                    <label for="comentario" th:if="${interacao.id == null" >Comentário</label>
                     <textarea class="form-control" id="comentario" required></textarea>
                     <div class="invalid-feedback">
                         Não deve estar em branco.

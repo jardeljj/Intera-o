@@ -9,9 +9,12 @@ import java.io.Serializable;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,6 +46,12 @@ public class Interacao implements Serializable {
     @NotNull
     @Size(max = 1000)
     @Column
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "prduto_id")
     private String comentario;
+
+    public Object getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
