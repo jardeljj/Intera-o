@@ -12,39 +12,41 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="img-fluid" th:src="@{__${item.imagemUrl}__}" alt="Imagem do produto"/>
-                </div>
-                <div class="col-md-8">
-                    <h1><span th:text="${item.nome}">Nome do produto</span> <em class="badge badge-info">ID: <span th:text="${item.id}"></span></em></h1>
-                    <h2 th:text="${#numbers.formatCurrency(item.preco)}">R$ 100,99</h2>
-                    <button class="btn btn-success btn-block my-2">
-                        Comprar
-                    </button>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Descrição</h5>
-                            <p class="card-text" th:text="${item.descricao}">Texto da descrição</p>
+            <form th:object="${item}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" th:src="@{__${item.produto.imagemUrl}__}" alt="Imagem do item"/>
+                    </div>
+                    <div class="col-md-8">
+                        <h1><span th:text="${item.produto.nome}">Nome do item</span> <em class="badge badge-info">ID: <span th:text="${item.produto.id}"></span></em></h1>
+                        <h2 th:text="${#numbers.formatCurrency(item.produto.preco)}">R$ 100,99</h2>
+                        <button class="btn btn-success btn-block my-2">
+                            Comprar
+                        </button>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Descrição</h5>
+                                <p class="card-text" th:text="${item.produto.descricao}">Texto da descrição</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr />
-            <!-- SUBSTITUIR O CÓDIGO html ABAIXO PARA MOSTRAR O FORMULÁRIO E A LISTAGEM DOS COMENTÁRIOS CADASTRADOS -->
-            <h3>Incluir Comentários</h3>
-            <form >
+
+                <hr />
+                <!-- SUBSTITUIR O CÓDIGO html ABAIXO PARA MOSTRAR O FORMULÁRIO E A LISTAGEM DOS COMENTÁRIOS CADASTRADOS -->
+                <h3>Incluir Comentários</h3>
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="nome" th:if="${interacao.id == null}">Nome</label>
+                        <label for="nome" th:if="${item.interacao.id == 0L}">Nome</label>
                         <input type="nome" class="form-control" 
-                         id="nome" placeholder="NOME COMPLETO" required>
+                               id="nome" placeholder="NOME COMPLETO" required>
                         <div class="invalid-feedback">
                             Preencha corretamente o campo.
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="email" th:if="${interacao.id == null">Email</label>
+                        <label for="email" th:if="${item.interacao.id == 0L}">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="E-mail" required>
                         <div class="invalid-feedback">
                             Preencha corretamente o campo.
@@ -52,7 +54,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="comentario" th:if="${interacao.id == null" >Comentário</label>
+                    <label for="comentario" th:if="${item.interacao.id == 0L}" >Comentário</label>
                     <textarea class="form-control" id="comentario" required></textarea>
                     <div class="invalid-feedback">
                         Não deve estar em branco.
