@@ -5,11 +5,13 @@
  */
 package br.senac.tads.dsw.comentarios.produto;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,8 +39,18 @@ public class ProdutoController {
             redirAttr.addFlashAttribute("msgErro", "Produto com ID " + id + " não encontrado.");
             return new ModelAndView("redirect:/produtos");
         }
+        
+        ProdutoInteracao pi = new ProdutoInteracao(optProduto.get(), new Interacao());
+        
         return new ModelAndView("produtos/detalhes")
-                .addObject("item", optProduto.get());
+                .addObject("item", pi);
+    }
+    @RequestMapping(/saveInteracao)
+    public ModelAndView saveInteracao(@RequestBody ProdutoInteracao pi){
+        Interacao i = pi.getInteracao();
+        
+        
+        return new ModelAndView("redirect:/produtos/" + pi.getProduto().getId());
     }
 
 }
