@@ -45,7 +45,7 @@ public class ProdutoController {
         return new ModelAndView("produtos/detalhes")
                 .addObject("item", pi);
     }
-    @RequestMapping(/saveInteracao)
+    @RequestMapping("/saveInteracao")
     public ModelAndView saveInteracao(@RequestBody ProdutoInteracao pi){
         Interacao i = pi.getInteracao();
         
